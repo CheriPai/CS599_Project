@@ -2,6 +2,7 @@ from scipy import misc
 import align.detect_face
 import facenet
 import numpy as np
+import os
 import tensorflow as tf
 
 
