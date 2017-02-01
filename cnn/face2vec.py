@@ -50,12 +50,12 @@ def main(args):
             print('Watching: %s' % args.watch_dir)
 
             while True:
-                # FIXME: Only accept VALID (fully downloaded) image files
+                # TODO: Only accept VALID (fully downloaded) image files
                 image_filenames = os.listdir(args.watch_dir)
                 if not image_filenames:
                     time.sleep(0.01)
                 else:
-                    # FIXME: Implement max_batch_size
+                    # TODO: Implement max_batch_size
                     image_filepaths = [os.path.join(args.watch_dir, image_filename) for image_filename in image_filenames]
                     images = load_and_align_data(image_filepaths, args.image_size, args.margin, args.gpu_memory_fraction)
 
