@@ -50,6 +50,7 @@ def main(args):
             print('Watching: %s' % args.watch_dir)
 
             while True:
+                # FIXME: Only accept VALID (fully downloaded) image files
                 image_filenames = os.listdir(args.watch_dir)
                 if not image_filenames:
                     time.sleep(0.01)
