@@ -103,3 +103,13 @@ ENV/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+Progress Report - Feb 1.txt
+.idea/celebify.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/inspectionProfiles/profiles_settings.xml
+ir/celeb_vectors.json
+ir/celeb_vectors.pk
+ir/sample.json
