@@ -51,7 +51,7 @@ def main(args):
 
                     for filename, vector in zip(image_filenames, emb.tolist()):
                         image_filepath = os.path.join(args.watch_dir, filename)
-                        output_filepath = os.path.join(args.output_dir, os.path.splitext(filename)[0] + ".csv")
+                        output_filepath = os.path.join(args.output_dir, os.path.splitext(filename)[0] + ".json")
 
                         rank = ranker.calculate_ranking(vector)
                         rank_names = [c.name for c in rank]
