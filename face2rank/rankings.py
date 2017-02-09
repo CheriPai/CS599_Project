@@ -39,6 +39,8 @@ class Rankings(object):
                 return
 
     def calculate_ranking(self, query):
+        self.cos_sim_ranking = []
+        self.euclid_dist_ranking = []
         for item in self.data.iteritems():
             simcalc.calculate_cosine_sim_euclid_dist(item[0], np.array(item[1]), query, self)
         return self.cos_sim_ranking
