@@ -46,12 +46,10 @@ class Rankings(object):
         return self.cos_sim_ranking
 
 
-def json_to_pickle(path):
+def json_to_pickle(path, output_filename):
     with open(path) as data_file:
         data = json.load(data_file)
-        data_file.close()
 
     df = pd.Series(data)
 
-    pd.to_pickle(df, 'celeb_vectors.pk')
-
+    pd.to_pickle(df, output_filename)
