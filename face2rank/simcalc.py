@@ -16,3 +16,8 @@ def calculate_cosine_sim(name, array_of_vectors, query, rankings):
     for row in range(array_of_vectors.shape[0]):
         cos_sim_results.append(1 - spatial.distance.cosine(array_of_vectors[[row], :], query))
     rankings.update_cos_sim_ranking(name, max(cos_sim_results))
+
+
+def calculate_cosine_sim_vectorized(name, array_of_vectors, query, rankings):
+    sim = np.subtract(1, spatial.distance.cdist(np.array([query]), array_of_vectors, "cosine"))
+    rankings.update_cos_sim_ranking(name, np.max(sim))

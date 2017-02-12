@@ -28,7 +28,7 @@ class Rankings(object):
     def calculate_ranking(self, query):
         self.cos_sim_ranking = []
         for item in self.data.iteritems():
-            simcalc.calculate_cosine_sim(item[0], np.array(item[1]), query, self)
+            simcalc.calculate_cosine_sim_vectorized(item[0], np.array(item[1]), query, self)
         return self.cos_sim_ranking
 
 
