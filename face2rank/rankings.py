@@ -6,11 +6,10 @@ import pandas as pd
 
 
 class Rankings(object):
-    """Stores ranking lists for Cosine Similary and Euclidean Distance"""
+    """Stores ranking lists for Cosine Similary"""
     def __init__(self, num_to_rank, data_path):
         super(Rankings, self).__init__()
         self.cos_sim_ranking = []
-        self.euclid_dist_ranking = []
         self.num_to_rank = num_to_rank
         self.data = pd.read_pickle(data_path)
 
@@ -26,23 +25,10 @@ class Rankings(object):
             else:
                 return
 
-    def update_euclid_dist_ranking(self, name, euclid_dist_value):
-        if len(self.euclid_dist_ranking) < self.num_to_rank:
-            self.euclid_dist_ranking.append(simcalc.CelebClass(name, euclid_dist_value))
-            self.euclid_dist_ranking.sort(key=lambda c: c.value)
-        else:    
-            if euclid_dist_value < self.euclid_dist_ranking[self.num_to_rank - 1].value:
-                self.euclid_dist_ranking.pop(self.num_to_rank - 1)
-                self.euclid_dist_ranking.append(simcalc.CelebClass(name, euclid_dist_value))
-                self.euclid_dist_ranking.sort(key=lambda c: c.value)
-            else:
-                return
-
     def calculate_ranking(self, query):
         self.cos_sim_ranking = []
-        self.euclid_dist_ranking = []
         for item in self.data.iteritems():
-            simcalc.calculate_cosine_sim_euclid_dist(item[0], np.array(item[1]), query, self)
+            simcalc.calculate_cosine_sim(item[0], np.array(item[1]), query, self)
         return self.cos_sim_ranking
 
 

@@ -1,5 +1,6 @@
 from __future__ import print_function
 from scipy import spatial
+import numpy as np
 
 
 class CelebClass(object):
@@ -10,14 +11,8 @@ class CelebClass(object):
         self.value = value
         
 
-def calculate_cosine_sim_euclid_dist(name, array_of_vectors, query, rankings):
+def calculate_cosine_sim(name, array_of_vectors, query, rankings):
     cos_sim_results = []
-    euclid_dist_results = []
     for row in range(array_of_vectors.shape[0]):
         cos_sim_results.append(1 - spatial.distance.cosine(array_of_vectors[[row], :], query))
-        euclid_dist_results.append(spatial.distance.euclidean(array_of_vectors[[row], :], query))
-
     rankings.update_cos_sim_ranking(name, max(cos_sim_results))
-    rankings.update_euclid_dist_ranking(name, min(euclid_dist_results))
-
-
