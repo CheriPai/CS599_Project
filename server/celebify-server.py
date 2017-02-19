@@ -1,7 +1,8 @@
 import time
+import json
 import os
 import os.path
-from flask import Flask, url_for, request, render_template, flash, session, redirect, send_from_directory
+from flask import Flask, url_for, request, jsonify, render_template, flash, session, redirect, send_from_directory
 from werkzeug.utils import secure_filename
 
 # change these paths
@@ -47,7 +48,10 @@ def return_json():
     json_file = request.args.get('json_file')
     my_file = os.path.join(app.config['OUTPUT_FOLDER'], json_file)
     if os.path.isfile(my_file):
-        return send_from_directory(app.config['OUTPUT_FOLDER'], json_file)
+        data = json.load(open(my_file))
+        # delete the json file from directory
+        os.remove(my_file)
+        return jsonify(data)
     else:
         time.sleep(1)
         return redirect(url_for('return_json', json_file=json_file))
