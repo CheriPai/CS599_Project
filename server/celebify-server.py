@@ -4,6 +4,7 @@ import os.path
 from flask import Flask, url_for, request, render_template, flash, session, redirect, send_from_directory
 from werkzeug.utils import secure_filename
 
+# change these paths
 UPLOAD_FOLDER = '/Users/raymondluc/input'
 OUTPUT_FOLDER = '/Users/raymondluc/output'
 
