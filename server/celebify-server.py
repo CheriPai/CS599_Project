@@ -5,9 +5,8 @@ import os.path
 from flask import Flask, url_for, request, jsonify, render_template, flash, session, redirect, send_from_directory
 from werkzeug.utils import secure_filename
 
-# change these paths
-UPLOAD_FOLDER = '/Users/raymondluc/input'
-OUTPUT_FOLDER = '/Users/raymondluc/output'
+UPLOAD_FOLDER = '../watch/in'
+OUTPUT_FOLDER = '../watch/out'
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
