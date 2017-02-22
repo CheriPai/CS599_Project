@@ -7,14 +7,13 @@ from rankings import Rankings
 
 val = pd.read_pickle("../data/val.pk")
 
-correct = []
-r = Rankings(1, "../data/train.pk")
-i = 0
-for item in val.iteritems():
+correct = np.zeros((1680), dtype=np.int)
+r = Rankings(5, "../data/train.pk")
+for i, item in enumerate(val.iteritems()):
     ranking = r.calculate_ranking(item[1])   
-    if ranking[0].name == item[0]:
-        correct.append(1)
-    else:
-        correct.append(0)
+    for j, celeb in enumerate(ranking):
+        if ranking[j].name == item[0]:
+            correct[i] = j+1
+            break
 
-print(np.sum(correct) / len(correct))
+print(np.bincount(correct))
