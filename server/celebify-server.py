@@ -46,13 +46,13 @@ def upload_image():
 def return_json():
     json_file = request.args.get('json_file')
     my_file = os.path.join(app.config['OUTPUT_FOLDER'], json_file)
-    if os.path.isfile(my_file):
-        data = json.load(open(my_file))
-        # delete the json file from directory
-        os.remove(my_file)
-        return jsonify(data)
-    else:
-        time.sleep(0.01)
-        return redirect(url_for('return_json', json_file=json_file))
+    while(True):
+        if os.path.isfile(my_file):
+            data = json.load(open(my_file))
+            # delete the json file from directory
+            os.remove(my_file)
+            return jsonify(data)
+        else:
+            time.sleep(0.01)
 
 app.run()
