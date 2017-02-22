@@ -52,7 +52,7 @@ def return_json():
         os.remove(my_file)
         return jsonify(data)
     else:
-        time.sleep(1)
+        time.sleep(0.01)
         return redirect(url_for('return_json', json_file=json_file))
 
 app.run()
