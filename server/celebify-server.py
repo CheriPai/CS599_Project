@@ -55,4 +55,4 @@ def return_json():
         else:
             time.sleep(0.01)
 
-app.run()
+app.run(debug=True)
