@@ -59,3 +59,8 @@ body {
     margin-top: 8px;
     background-color: #428bca;
 }
+.celeb-name {
+    position: relative;
+    left: -100px;
+    top: 40px;
+}
