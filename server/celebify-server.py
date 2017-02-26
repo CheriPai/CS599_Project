@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '../watch/in'
 OUTPUT_FOLDER = '../watch/out'
+LFW_PREFIX = 'static/images/lfw'
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -48,10 +49,13 @@ def return_json():
     my_file = os.path.join(app.config['OUTPUT_FOLDER'], json_file)
     while(True):
         if os.path.isfile(my_file):
-            data = json.load(open(my_file))
+            names = json.load(open(my_file))
             # delete the json file from directory
             os.remove(my_file)
-            return jsonify(data)
+            img_paths = [os.path.join(LFW_PREFIX, name, name+'_0001.jpg') for name in names]
+            data = [name.replace("_", " ") for name in names]
+            data = zip(data, img_paths)
+            return render_template('results.html', data=data)
         else:
             time.sleep(0.01)
 
